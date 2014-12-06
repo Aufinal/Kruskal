@@ -32,7 +32,7 @@ inline int length(uf u, int x) {
   return u.len[x] ;
 }
 
-inline void set_lenght(uf u, int x, int i) {
+inline void set_length(uf u, int x, int i) {
   u.len[x] = i ;
 }
 
@@ -40,7 +40,7 @@ int simple_find(uf u, int x) {
   if (x == father(u, x)) {
     return x ;
   } else {
-    simple_find(u, father(u, x)) ;
+    simple_find(u, father(u, x) ;
   }
 }
 
