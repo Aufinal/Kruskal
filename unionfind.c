@@ -1,5 +1,8 @@
 #include "unionfind.h"
 
+/*Je ne vois pas vraiment l'utilité du champ length ; tu ne l'utilises pas 
+  dans la suite... */
+
 void uf_reset(uf u) {
   int i ;
   for (i = 0 ; i < u.size ; i++) {
@@ -40,7 +43,7 @@ int simple_find(uf u, int x) {
   if (x == father(u, x)) {
     return x ;
   } else {
-    simple_find(u, father(u, x) ;
+    simple_find(u, father(u, x)) ;
   }
 }
 
