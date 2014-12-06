@@ -1,8 +1,7 @@
 #ifndef QUICKSORT_H
-
-#include "aretes.h"
-
 #define QUICKSORT_H
+
+#include "edges.h"
 
 void quicksort(edge*, int, int) ;
 void insertion(edge*, int, int) ;

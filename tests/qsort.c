@@ -7,7 +7,7 @@
 
 /* en fait ce fichier a plus ca place dans le dossier tests
    avec le Makefile ca te fait tout bien ... */
-
+/* par contre faudrait faire un fichier read_file.c dans le dossier principal */
 int main()
 {
 /*

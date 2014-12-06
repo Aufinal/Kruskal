@@ -4,6 +4,15 @@
 
 const int MAX = 1500 ;
 
+/* En fait je pense que le quicksort comme l'union-find devrait se faire
+   sur des entiers ; en parametrant par la fonction de comparaison
+   pour le quicksort. On aurait un premier tableau avec toutes les aretes
+   (issu du scan du fichier), qui permet d'associer a chaque entier entre
+   0 et m - 1 une arete, puis on travaille avec ces entiers la (en les
+   assimilant aux aretes).
+   Du coup la fonction de comparaison c'est
+   f(int e1, int e2) { aretes[e1].weight <= aretes[e2].weight },
+   et on peut parametrer le quicksort par une fonction (int (*f)(int)) */
 
 void quicksort(edge* aretes, int debut, int fin)
 {
