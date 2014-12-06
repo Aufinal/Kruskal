@@ -8,15 +8,15 @@
 typedef struct s_list * list;
 typedef struct s_list {
     list cdr;
-    void *car;
+    int car;
 } s_list;
 
 list nil;
-list cons(void* car, list cdr);
+list cons(int car, list cdr);
 
-list list_map(void* (*f)(void*), list l);
-void list_iter(void (*f)(void*), list l);
+list list_map(int (*f)(int), list l);
+void list_iter(void (*f)(int), list l);
 
-void free_list(void (*free_elem)(void*), list l);
+void free_list(list l);
 
 #endif

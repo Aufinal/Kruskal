@@ -5,6 +5,9 @@
 #include "quicksort.h"
 #include "aretes.h"
 
+/* en fait ce fichier a plus ca place dans le dossier tests
+   avec le Makefile ca te fait tout bien ... */
+
 int main()
 {
 /*

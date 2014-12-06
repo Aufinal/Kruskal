@@ -3,7 +3,8 @@
 CC=gcc
 
 WARNINGS=-W -Wall -Wextra -Werror
-OTHER_FLAGS=-std=c99 -I. -g
+#OTHER_FLAGS=-std=c99 -I. -g
+OTHER_FLAGS=-std=c11 -I. -g
 FLAGS= $(OTHER_FLAGS) $(WARNINGS)
 
 COMPILE=-c
@@ -21,7 +22,7 @@ TESTS=$(patsubst $(TEST_DIR)/%.c,%.test,$(TESTS_SOURCES))
 
 all: $(OBJECTS)
 
-tests: $(TESTS)
+tests: $(BUILD_TEST_DIR) $(TESTS)
 
 %.test: $(OBJECTS) $(BUILD_TEST_DIR)/%.o
 	$(CC) $(FLAGS) $(LINK_FLAGS) $^ $(OUTPUT) $@
