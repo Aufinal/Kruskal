@@ -14,80 +14,85 @@ const int MAX = 1500 ;
    f(int e1, int e2) { aretes[e1].weight <= aretes[e2].weight },
    et on peut parametrer le quicksort par une fonction (int (*f)(int)) */
 
-void quicksort(edge* aretes, int debut, int fin)
+/* L'idée me va mais j'ai un problème d'application : est ce qu'il faut passer 
+   aretes en argument à f, ou on utilise une autre méthode ?
+   Dans le doute, je le considère pour l'instant "connu" par f, donc pas 
+   passé en argument. */
+
+void quicksort(int (*f)(int, int),  int* t, int debut, int fin)
 {
     if (fin-debut < MAX)
     {
-        insertion (aretes,debut,fin) ;
+      insertion (f, t, debut, fin) ;
     }
     else
     {
-        int pivot = choixpivot (aretes, debut,fin) ;
-        int pos_pivot = pivotage (aretes, pivot, debut, fin) ;
-        quicksort (aretes, debut, pos_pivot) ;
-        quicksort (aretes, pos_pivot+1, fin) ;
+      int pivot = choixpivot (f, t, debut,fin) ;
+      int pos_pivot = pivotage (f, t, pivot, debut, fin) ;
+      quicksort (f, t, debut, pos_pivot) ;
+      quicksort (f, t, pos_pivot+1, fin) ;
     }
 }
 
-int choixpivot(edge* t, int debut, int fin)
+int choixpivot(int (*f)(int,int), int* t, int debut, int fin)
 {
     int mid = (debut+fin-1)/2 ;
-    int a = (t[fin-1].weight < t[debut].weight) ? debut : (fin-1) ;
+    int a = ( f(t[fin-1], t[debut]) ) ? debut : (fin-1) ;
     int b = debut + fin - a - 1 ;
-    if (t[a].weight < t[mid].weight)
+    if (f(t[a], t[mid]))
     {
-        return a ;
+      return a ;
     }
     else
     {
-        return (t[b].weight < t[mid].weight) ? mid : b ;
+      return (f(t[b], t[mid])) ? mid : b ;
     }
 }
 
-int pivotage(edge* aretes, int pivot, int debut, int fin)
+int pivotage(int (*f) (int, int), int* t, int pivot, int debut, int fin)
 {
-    edge valpiv = aretes[pivot] ;
+    edge valpiv = t[pivot] ;
     int i = debut+1 , ipivot = debut ;
-    swap (aretes, ipivot, pivot) ;
+    swap (t, ipivot, pivot) ;
     for ( ; i < fin ; i++)
     {
-        if (aretes[i].weight < valpiv.weight)
+      if (f(t[i], valpiv))
         {
-            aretes[ipivot] = aretes[i] ;
-            aretes[i] = aretes[ipivot+1] ;
+            t[ipivot] = t[i] ;
+            t[i] = t[ipivot+1] ;
             ipivot++ ;
         }
     }
-    aretes[ipivot] = valpiv ;
+    t[ipivot] = valpiv ;
     return ipivot ;
 }
 
-void swap (edge* t, int a, int b)
+void swap (int* t, int a, int b)
 {
-    edge c = t[b];
+    int c = t[b];
     t[b] = t[a] ;
     t[a] = c ;
 }
 
-void insertion (edge* aretes, int debut, int fin)
+void insertion (int (*f)(int, int), int* t, int debut, int fin)
 {
     int i = debut ;
-    edge actuel ;
+    int actuel ;
     for ( ; i < fin ; i++)
     {
-        actuel = aretes[i] ;
+        actuel = t[i] ;
         int j = i-1 ;
         for ( ; j >= debut ; j--)
         {
-            if (aretes[j].weight < actuel.weight)
+	  if (f(t[j], actuel))
             {
                 break ;
             }
             else
             {
-                aretes[j+1] = aretes[j] ;
+                t[j+1] = t[j] ;
             }
         }
-        aretes[j+1] = actuel ;
+        t[j+1] = actuel ;
     }
 }
