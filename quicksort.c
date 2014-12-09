@@ -14,10 +14,11 @@ const int MAX = 1500 ;
    f(int e1, int e2) { aretes[e1].weight <= aretes[e2].weight },
    et on peut parametrer le quicksort par une fonction (int (*f)(int)) */
 
-/* L'idée me va mais j'ai un problème d'application : est ce qu'il faut passer 
+/* L'idée me va mais j'ai un problème d'application : est ce qu'il faut passer
    aretes en argument à f, ou on utilise une autre méthode ?
-   Dans le doute, je le considère pour l'instant "connu" par f, donc pas 
+   Dans le doute, je le considère pour l'instant "connu" par f, donc pas
    passé en argument. */
+/* oui, on verra ca dans le main. en gros ca sera plus ou moins dans "l'environement" de f (bon en C y a pas de fermetures, mais bon... */
 
 void quicksort(int (*f)(int, int),  int* t, int debut, int fin)
 {

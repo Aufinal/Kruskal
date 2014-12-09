@@ -1,17 +1,23 @@
 #ifndef EDGES_H
 #define EDGES_H
 
+#include "errors.h"
+
 typedef struct s_edge {
   int weight ;
   int v1 ;
   int v2 ;
 } edge ;
 
-inline int leq(edge e1, edge e2) ;
+int leq(edge e1, edge e2) ;
 
 typedef struct s_edge_set {
-  int size ;
+  int max_size ;
+  int used_size ;
   edge* array ;
 } edge_set ;
+
+edge_set edge_set_create(int max_size) ;
+err_code add_edge(edge_set set, edge e) ;
 
 #endif // EDGES_H

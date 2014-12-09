@@ -3,8 +3,8 @@
 CC=gcc
 
 WARNINGS=-W -Wall -Wextra -Werror
-#OTHER_FLAGS=-std=c99 -I. -g
-OTHER_FLAGS=-std=c11 -I. -g
+OTHER_FLAGS=-std=c99 -I. -g
+#OTHER_FLAGS=-std=c11 -I. -g
 FLAGS= $(OTHER_FLAGS) $(WARNINGS)
 
 COMPILE=-c

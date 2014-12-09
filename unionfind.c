@@ -1,9 +1,6 @@
 #include <stdlib.h>
 #include "unionfind.h"
 
-/*Je ne vois pas vraiment l'utilité du champ length ; tu ne l'utilises pas
-  dans la suite... ; c'est une heuristique pour l'algorithme, en fait je l'ai changé en rankm cf la page wikipedia francaise de union find */
-
 void uf_reset(uf u) {
   int i ;
   for (i = 0 ; i < u.size ; i++) {
