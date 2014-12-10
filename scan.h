@@ -5,5 +5,6 @@
 #include <stdio.h>
 
 edge_set scan_file(FILE* f) ;
+void scan_check(int count, int expected) ;
 
 #endif
