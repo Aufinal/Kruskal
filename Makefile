@@ -34,7 +34,7 @@ $(BUILD_TEST_DIR): $(BUILD_DIR)
 	mkdir -p $(BUILD_TEST_DIR)
 
 # TODO : what about the .h ?
-$(BUILD_DIR)/%.o: %.c $(BUILD_DIR)
+$(BUILD_DIR)/%.o: %.c %.h $(BUILD_DIR)
 	$(CC) $(FLAGS) $(COMPILE) $< $(OUTPUT) $@
 
 $(BUILD_TEST_DIR)/%.o: $(TEST_DIR)/%.c $(BUILD_TEST_DIR)

@@ -4,7 +4,6 @@
 #include "edges.h"
 #include <stdio.h>
 
-edge_set scan_file(FILE* f) ;
-void scan_check(int count, int expected) ;
+err_code scan_file(char* filename, edge_set* res) ;
 
 #endif

@@ -4,42 +4,28 @@
 
 const int MAX = 1500 ;
 
-/* En fait je pense que le quicksort comme l'union-find devrait se faire
-   sur des entiers ; en parametrant par la fonction de comparaison
-   pour le quicksort. On aurait un premier tableau avec toutes les aretes
-   (issu du scan du fichier), qui permet d'associer a chaque entier entre
-   0 et m - 1 une arete, puis on travaille avec ces entiers la (en les
-   assimilant aux aretes).
-   Du coup la fonction de comparaison c'est
-   f(int e1, int e2) { aretes[e1].weight <= aretes[e2].weight },
-   et on peut parametrer le quicksort par une fonction (int (*f)(int)) */
+//TODO ; Optimisation en place (appels récursifs quicksort)
 
-/* L'idée me va mais j'ai un problème d'application : est ce qu'il faut passer
-   aretes en argument à f, ou on utilise une autre méthode ?
-   Dans le doute, je le considère pour l'instant "connu" par f, donc pas
-   passé en argument. */
-/* oui, on verra ca dans le main. en gros ca sera plus ou moins dans "l'environement" de f (bon en C y a pas de fermetures, mais bon... */
-
-void quicksort(int (*f)(int, int),  int* t, int debut, int fin)
+void quicksort(bool (*f)(int, int),  int* t, int start, int end)
 {
-    if (fin-debut < MAX)
+    if (end-start < MAX)
     {
-      insertion (f, t, debut, fin) ;
+      insertion (f, t, start, end) ;
     }
     else
     {
-      int pivot = choixpivot (f, t, debut,fin) ;
-      int pos_pivot = pivotage (f, t, pivot, debut, fin) ;
-      quicksort (f, t, debut, pos_pivot) ;
-      quicksort (f, t, pos_pivot+1, fin) ;
+      int pivot = choose_pivot (f, t, start, end) ;
+      int pos_pivot = partition (f, t, pivot, start, end) ;
+      quicksort (f, t, start, pos_pivot) ;
+      quicksort (f, t, pos_pivot+1, end) ;
     }
 }
 
-int choixpivot(int (*f)(int,int), int* t, int debut, int fin)
+int choose_pivot(bool (*f)(int,int), int* t, int start, int end)
 {
-    int mid = (debut+fin-1)/2 ;
-    int a = ( f(t[fin-1], t[debut]) ) ? debut : (fin-1) ;
-    int b = debut + fin - a - 1 ;
+    int mid = (start+end-1)/2 ;
+    int a = ( f(t[end-1], t[start]) ) ? start : (end-1) ;
+    int b = start + end - a - 1 ;
     if (f(t[a], t[mid]))
     {
       return a ;
@@ -50,12 +36,12 @@ int choixpivot(int (*f)(int,int), int* t, int debut, int fin)
     }
 }
 
-int pivotage(int (*f) (int, int), int* t, int pivot, int debut, int fin)
+int partition(bool (*f) (int, int), int* t, int pivot, int start, int end)
 {
-    edge valpiv = t[pivot] ;
-    int i = debut+1 , ipivot = debut ;
+    int valpiv = t[pivot] ;
+    int i = start+1 , ipivot = start ;
     swap (t, ipivot, pivot) ;
-    for ( ; i < fin ; i++)
+    for ( ; i < end ; i++)
     {
       if (f(t[i], valpiv))
         {
@@ -75,17 +61,17 @@ void swap (int* t, int a, int b)
     t[a] = c ;
 }
 
-void insertion (int (*f)(int, int), int* t, int debut, int fin)
+void insertion (bool (*f)(int, int), int* t, int start, int end)
 {
-    int i = debut ;
-    int actuel ;
-    for ( ; i < fin ; i++)
+    int i = start ;
+    int current ;
+    for ( ; i < end ; i++)
     {
-        actuel = t[i] ;
+        current = t[i] ;
         int j = i-1 ;
-        for ( ; j >= debut ; j--)
+        for ( ; j >= start ; j--)
         {
-	  if (f(t[j], actuel))
+	  if (f(t[j], current))
             {
                 break ;
             }
@@ -94,6 +80,6 @@ void insertion (int (*f)(int, int), int* t, int debut, int fin)
                 t[j+1] = t[j] ;
             }
         }
-        t[j+1] = actuel ;
+        t[j+1] = current ;
     }
 }

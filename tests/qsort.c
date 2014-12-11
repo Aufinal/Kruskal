@@ -3,11 +3,14 @@
 #include <time.h>
 #include "unionfind.h"
 #include "quicksort.h"
-#include "aretes.h"
+#include "edges.h"
 
-/* en fait ce fichier a plus ca place dans le dossier tests
-   avec le Makefile ca te fait tout bien ... */
-/* par contre faudrait faire un fichier read_file.c dans le dossier principal */
+// TODO : modifier f, etc... Faire un main quoi !
+
+bool f(int a, int b) {
+  return (a<=b) ;
+}
+
 int main()
 {
 /*
@@ -38,29 +41,26 @@ int main()
 
 
     srand (time(NULL)) ;
-    int n = 1000000, i = 0 ;
+    int n = 100000, i = 0 ;
     // scanf("%d", &n) ;
-
-    edge t[n];
-    int a ;
-
+    int t[n];
 
     for ( ; i<n ; i++)
     {
-        a = rand () % 1000 ;
-        t[i].weight = a ;
+      t[i] = rand() ;
     }
 
-    quicksort(t, 0, n) ;
+    quicksort(*f, t, 0, n ) ;
 
     int c = 1, j=0  ;
 
     while (c && j < n-1)
     {
-        c = t[j].weight <= t[j+1].weight ;
+        c = t[j] <= t[j+1] ;
         j++ ;
     }
 
+    printf("%d\n", c) ;
 
     return 0 ;
 }

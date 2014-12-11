@@ -2,6 +2,7 @@
 #define EDGES_H
 
 #include "errors.h"
+#include "bool.h"
 
 typedef struct s_edge {
   int weight ;
@@ -9,7 +10,8 @@ typedef struct s_edge {
   int v2 ;
 } edge ;
 
-int leq(edge e1, edge e2) ;
+bool edge_weight_leq(edge e1, edge e2) ;
+bool edge_eq(edge e1, edge e2) ;
 
 typedef struct s_edge_set {
   int max_size ;
@@ -19,5 +21,6 @@ typedef struct s_edge_set {
 
 edge_set edge_set_create(int max_size) ;
 err_code add_edge(edge_set set, edge e) ;
+bool edge_set_is_in(edge_set set, edge e) ;
 
 #endif // EDGES_H

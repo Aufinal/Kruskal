@@ -2,11 +2,12 @@
 #define QUICKSORT_H
 
 #include "edges.h"
+#include "bool.h"
 
-void quicksort(edge*, int, int) ;
-void insertion(edge*, int, int) ;
-int choixpivot(edge*,int,int) ;
-int pivotage (edge* , int , int, int) ;
-void swap (edge* t, int a, int b) ;
+void quicksort(bool (*f) (int, int), int* t, int start, int end) ;
+void insertion(bool (*f) (int, int), int* t, int start, int end) ;
+int choose_pivot(bool (*f) (int, int), int* t, int start, int end) ;
+int partition(bool (*f) (int, int), int* t, int pivot, int start, int end) ;
+void swap (int* t, int a, int b) ;
 
 #endif
