@@ -3,7 +3,7 @@
 CC=gcc
 
 WARNINGS=-W -Wall -Wextra -Werror
-MOREWARNINGS=$(WARNINGS) -Wcast-qual -Wcast-align -Wfloat-equal -Wshadow -Wpointer-arith -Wunreachable-code -Wchar-subscripts -Wcomment -Wformat -Werror-implicit-function-declaration -Wmain -Wmissing-braces -Wparentheses -Wsequence-point -Wreturn-type -Wswitch -Wuninitialized -Wreorder -Wundef -Wwrite-strings -Wsign-compare -Wmissing-declarations -pedantic -Wconversion -Wmissing-noreturn -Wold-style-cast -Wunused -Wsign-conversion -Wunused -Wstrict-aliasing -Wstrict-overflow -Wconversion -Wdisabled-optimization
+MOREWARNINGS=$(WARNINGS) -Wcast-qual -Wcast-align -Wfloat-equal -Wshadow -Wpointer-arith -Wunreachable-code -Wchar-subscripts -Wcomment -Wformat -Werror-implicit-function-declaration -Wmain -Wmissing-braces -Wparentheses -Wsequence-point -Wreturn-type -Wswitch -Wuninitialized -Wundef -Wwrite-strings -Wsign-compare -Wmissing-declarations -pedantic -Wconversion -Wmissing-noreturn -Wunused -Wsign-conversion -Wunused -Wstrict-aliasing -Wstrict-overflow -Wconversion -Wdisabled-optimization
 
 OTHER_FLAGS=-std=c99 -I. -g
 #OTHER_FLAGS=-std=c11 -I. -g
