@@ -2,6 +2,7 @@
 #define ERRORS_H
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #define OK 0
 #define EXCEED_CAP 1 // à remplacer
@@ -13,6 +14,6 @@
 
 typedef int err_code ;
 
-void fprint_error(FILE* f, err_code e); // TODO : implem
+void fprint_error(err_code e); 
 
 #endif
