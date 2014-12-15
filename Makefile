@@ -12,34 +12,34 @@ OUTPUT=-o
 LINK_FLAGS=-lm
 
 BUILD_DIR=_build
-TEST_DIR=tests
-BUILD_TEST_DIR=$(BUILD_DIR)/$(TEST_DIR)
+EXEC_DIR=exec
+BUILD_EXEC_DIR=$(BUILD_DIR)/$(EXEC_DIR)
 
 SOURCES=${wildcard *.c}
 OBJECTS=$(patsubst %.c,_build/%.o,$(SOURCES))
-TESTS_SOURCES=$(wildcard $(TEST_DIR)/*.c)
-TESTS=$(patsubst $(TEST_DIR)/%.c,%.test,$(TESTS_SOURCES))
+EXEC_SOURCES=$(wildcard $(EXEC_DIR)/*.c)
+EXEC=$(patsubst $(EXEC_DIR)/%.c,%.bin,$(EXEC_SOURCES))
 
-all: $(OBJECTS)
+all: $(OBJECTS) exec
 
-tests: $(BUILD_TEST_DIR) $(TESTS)
+exec: $(BUILD_EXEC_DIR) $(EXEC)
 
-%.test: $(OBJECTS) $(BUILD_TEST_DIR)/%.o
+%.bin: $(OBJECTS) $(BUILD_EXEC_DIR)/%.o
 	$(CC) $(FLAGS) $(LINK_FLAGS) $^ $(OUTPUT) $@
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
-$(BUILD_TEST_DIR): $(BUILD_DIR)
-	mkdir -p $(BUILD_TEST_DIR)
+$(BUILD_EXEC_DIR): $(BUILD_DIR)
+	mkdir -p $(BUILD_EXEC_DIR)
 
 # TODO : what about the .h ?
 $(BUILD_DIR)/%.o: %.c %.h $(BUILD_DIR)
 	$(CC) $(FLAGS) $(COMPILE) $< $(OUTPUT) $@
 
-$(BUILD_TEST_DIR)/%.o: $(TEST_DIR)/%.c $(BUILD_TEST_DIR)
+$(BUILD_EXEC_DIR)/%.o: $(EXEC_DIR)/%.c $(BUILD_EXEC_DIR)
 	$(CC) $(FLAGS) $(COMPILE) $< $(OUTPUT) $@
 
 clean:
 	rm -rf $(BUILD_DIR)
-	rm -f *.test
+	rm -f *.bin
