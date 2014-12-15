@@ -19,11 +19,7 @@ int main () {
     printf("Not enough vertices\n");
     exit(1);
   }
-  if ( m < n - 1 ) {
-    printf("Not enough edges\n");
-    exit(1);
-  }
-  if ( m > (n * (n - 1)) / 2) {
+  if ( m > n * n) {
     printf("Too many edges\n");
     exit(1);
   }
@@ -31,20 +27,8 @@ int main () {
   err_code err ;
 
   oedge_set set = oedge_set_create(m);
-  for (int i = 1 ; i < n ; i++) {
-    oedge e1 ;
-    oedge e2 ;
-    e1.v1 = i ;
-    e1.v2 = rand() % i ;
-    e2.v1 = rand() % i ;
-    e2.v2 = i ;
-    e1.weight = (rand() % WEIGHT_MAX) + 1 ;
-    e2.weight = (rand() % WEIGHT_MAX) + 1 ;
-    add_oedge(set, e1) ;
-    add_oedge(set, e2) ;
-  }
-
-  for (int i = *(set.used_size); i < m ; i++) {
+  
+  for (int i = 0 ; i < m ; i++) {
     oedge e ;
     e.v1 = rand() % n ;
     e.v2 = rand() % n ;

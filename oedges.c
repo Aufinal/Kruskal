@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "edges.h"
+#include "oedges.h"
 
 bool oedge_eq(oedge e1, oedge e2) {
   return (e1.v1 == e2.v1) && (e1.v2 == e2.v2) ;
@@ -19,8 +19,6 @@ err_code add_oedge(oedge_set set, oedge e) {
     return TOO_MANY_EDGES ;
   } else if (oedge_set_is_in(set, e)) {
     return TWICE_EDGE ;
-  } else if (e.v1 == e.v2) {
-    return SAME_VERTEX ;
   } else {
     set.array[*(set.used_size)] = e ;
     *(set.used_size) += 1 ;
