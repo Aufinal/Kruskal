@@ -29,10 +29,10 @@ int main () {
   }
 
   edge_set set = edge_set_create(m);
-  for (int i = 0 ; i < n ; i++) {
+  for (int i = 1 ; i < n ; i++) {
     edge e ;
     e.v1 = i ;
-    e.v2 = rand() % n ;
+    e.v2 = rand() % i ;
     e.weight = (rand() % WEIGHT_MAX) + 1 ;
     add_edge(set, e) ;
   }
