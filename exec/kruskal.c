@@ -15,21 +15,21 @@ int main()
 
   edge_set s ;
   int n, i=0 ;
-  ftest_error(scan_file(p_name, &s, &n)) ; 
+  ftest_error(scan_file(p_name, &s, &n)) ;
 
   uf u = uf_create(n) ;
-  
+
   int* t_edges = calloc(s.max_size, sizeof(int)) ;
   for ( ; i < s.max_size ; i++) {
     t_edges[i] = i ;
   }
-  
+
   bool f(int a, int b) {
-  return (s.array[a].weight <= s.array[b].weight) ;
+    return (s.array[a].weight <= s.array[b].weight) ;
   }
 
   quicksort(f, t_edges, 0, s.max_size) ;
-  
+
   edge_set mst = edge_set_create(n-1) ;
   int total_weight = 0 ;
   edge curr_edge ;
@@ -46,9 +46,9 @@ int main()
   printf("Minimal spanning tree :\n") ;
 
   for (i=0 ; i<n-1 ; i++) {
-    printf("%d %d %d\n", mst.array[i].v1, mst.array[i].v2, mst.array[i].weight) ;
+    printf("%d %d %lf\n", mst.array[i].v1, mst.array[i].v2, mst.array[i].weight) ;
   }
-  
+
   printf("Total weight : %d\n", total_weight) ;
 
   return 0 ;

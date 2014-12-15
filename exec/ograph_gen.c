@@ -4,7 +4,12 @@
 #include "oedges.h"
 #include "errors.h"
 
-const int WEIGHT_MAX = 1500 ;
+const double WEIGHT_MAX = 1500 ;
+
+double rand_w() {
+  double x = ((double)rand()/(double)RAND_MAX);
+  return x * WEIGHT_MAX;
+}
 
 int main () {
   srand(time(NULL)) ;
@@ -27,12 +32,12 @@ int main () {
   err_code err ;
 
   oedge_set set = oedge_set_create(m);
-  
+
   for (int i = 0 ; i < m ; i++) {
     oedge e ;
     e.v1 = rand() % n ;
     e.v2 = rand() % n ;
-    e.weight = (rand() % WEIGHT_MAX) + 1 ;
+    e.weight = rand_w() ;
     err = add_oedge(set, e) ;
     if (err != OK) {
       i-- ;
@@ -47,8 +52,8 @@ int main () {
   for (int i = 0 ; i < m ; i++) {
     int a = set.array[i].v1 ;
     int b = set.array[i].v2 ;
-    int w = set.array[i].weight ;
-    fprintf(f, "%d %d %d\n", a, b, w) ;
+    double w = set.array[i].weight ;
+    fprintf(f, "%d %d %lf\n", a, b, w) ;
   }
 
   fclose(f) ;
