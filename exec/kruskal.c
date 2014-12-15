@@ -6,7 +6,6 @@
 #include "edges.h"
 #include "scan.h"
 
-// TODO : modifier f, etc... Faire un main quoi !
 
 bool f(int a, int b, edge_set s) {
   return (s.array[a].weight <= s.array[b].weight) ;
@@ -14,20 +13,24 @@ bool f(int a, int b, edge_set s) {
 
 int main()
 {
+  char name[256] ;
+  printf("File to scan : ") ;
+  char * p_name = name ;
+  scanf("%s", p_name) ;
+
   edge_set s ;
   int n, i=0 ;
-  ftest_error(scan_file("t", &s, &n)) ; //on recupere les aretes du fichier et le nombre de sommets
-  
+  ftest_error(scan_file(p_name, &s, &n)) ; 
+
   uf u = uf_create(n) ;
   
   int* t_edges = calloc(s.max_size, sizeof(int)) ;
   for ( ; i < s.max_size ; i++) {
     t_edges[i] = i ;
-  } //tableau pour la fonction de comparaison (comment l'utiliser ?)
-
+  } 
   quicksort(f, s, t_edges, 0, s.max_size) ;
   
-  edge_set mst = edge_set_create(n) ;
+  edge_set mst = edge_set_create(n-1) ;
   int total_weight = 0 ;
   edge curr_edge ;
 
@@ -42,7 +45,7 @@ int main()
 
   printf("Minimal spanning tree :\n") ;
 
-  for (i=0 ; i<n ; i++) {
+  for (i=0 ; i<n-1 ; i++) {
     printf("%d %d %d\n", mst.array[i].v1, mst.array[i].v2, mst.array[i].weight) ;
   }
   

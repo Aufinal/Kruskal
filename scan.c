@@ -1,7 +1,7 @@
 #include "scan.h"
 
 
-err_code scan_file(char* filename, edge_set* res, int* size) { //on a besoin de préciser const char ? (selon la doc c'est ce que demande fopen)
+err_code scan_file(char* filename, edge_set* res, int* size) { 
   int n = 0 ;
   int m = 0 ;
   int count, err ;

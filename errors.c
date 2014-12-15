@@ -6,28 +6,29 @@ void ftest_error(err_code e) {
     return ;
     break ;
 
-  case EXCEED_CAP: //non utilisé pour l'instant
+  case SAME_VERTEX:
+    printf("Error : same vertices ; this is not an edge\n") ;
     break ;
 
   case TOO_FEW_EDGES:
-    printf("Error : end of file reached, too few edges in file") ;
+    printf("Error : end of file reached, too few edges in file\n") ;
     break ;
 
   case TWICE_EDGE:
-    printf("Error : an edge is created twice") ; //j'aime pas ce message, à améliorer
+    printf("Error : an edge is created twice\n") ; 
     break ;
 
   case EMPTY_FILE:
-    printf("Error : empty file") ;
+    printf("Error : empty file\n") ;
     break ;
 
   case TOO_FEW_ITEMS:
-    printf("Error : scanned less items than expected") ;
+    printf("Error : scanned less items than expected\n") ;
     break ;
 
   case TOO_MANY_EDGES:
-    printf("Error : too many edges scanned") ;
+    printf("Error : too many edges scanned\n") ;
     break ;
   }
-  exit(1) ; // est ce qu'on exit vraiment ?
+  exit(1) ;
 }

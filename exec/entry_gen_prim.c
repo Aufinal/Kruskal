@@ -10,23 +10,25 @@ int main () {
   srand(time(NULL)) ;
   int n, m ;
   char name[256];
-  printf("nombre de sommets : ");
+  printf("Number of vertices : ");
   scanf("%d", &n) ; //sommets
-  printf("nombre d'aretes : ");
+  printf("Number of edges : ");
   scanf("%d", &m) ; //aretes
 
   if ( n < 1 ) {
-    printf("pas assez de sommets\n");
+    printf("Not enough vertices\n");
     exit(1);
   }
   if ( m < n - 1 ) {
-    printf("pas assez d'aretes\n");
+    printf("Not enough edges\n");
     exit(1);
   }
   if ( m > (n * (n - 1)) / 2) {
-    printf("trop d'aretes\n");
+    printf("Too many edges\n");
     exit(1);
   }
+
+  err_code err ;
 
   edge_set set = edge_set_create(m);
   for (int i = 1 ; i < n ; i++) {
@@ -34,7 +36,6 @@ int main () {
     e.v1 = i ;
     e.v2 = rand() % i ;
     e.weight = (rand() % WEIGHT_MAX) + 1 ;
-    printf("%d %d %d\n", e.v1, e.v2, e.weight) ; 
     add_edge(set, e) ;
   }
 
@@ -43,11 +44,13 @@ int main () {
     e.v1 = rand() % n ;
     e.v2 = rand() % n ;
     e.weight = (rand() % WEIGHT_MAX) + 1 ;
-    printf("%d %d %d\n", e.v1, e.v2, e.weight) ;
-    add_edge(set, e) ;
+    err = add_edge(set, e) ;
+    if (err != OK) {
+      i-- ;
+    }
   }
 
-  printf("nom du fichier de sortie : ");
+  printf("File to write : ");
   char * p_name = name;
   scanf("%s", p_name);
   FILE* f = fopen(p_name, "w") ;

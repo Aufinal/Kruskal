@@ -5,7 +5,7 @@
 #include <stdlib.h>
 
 #define OK 0
-#define EXCEED_CAP 1 // à remplacer
+#define SAME_VERTEX 1
 #define TOO_FEW_EDGES 2
 #define TWICE_EDGE 3
 #define EMPTY_FILE 4

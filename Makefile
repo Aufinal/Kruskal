@@ -33,7 +33,6 @@ $(BUILD_DIR):
 $(BUILD_EXEC_DIR): $(BUILD_DIR)
 	mkdir -p $(BUILD_EXEC_DIR)
 
-# TODO : what about the .h ?
 $(BUILD_DIR)/%.o: %.c %.h $(BUILD_DIR)
 	$(CC) $(FLAGS) $(COMPILE) $< $(OUTPUT) $@
 

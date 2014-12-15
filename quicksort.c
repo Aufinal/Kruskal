@@ -4,8 +4,6 @@
 
 const int MAX = 1500 ;
 
-//TODO ; Optimisation en place (appels récursifs quicksort)
-
 void quicksort(bool (*f)(int, int, edge_set), edge_set s,  int* t, int start, int end)
 {
     if (end-start < MAX)

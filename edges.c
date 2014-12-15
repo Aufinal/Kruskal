@@ -25,6 +25,8 @@ err_code add_edge(edge_set set, edge e) {
     return TOO_MANY_EDGES ;
   } else if (edge_set_is_in(set, e)) {
     return TWICE_EDGE ;
+  } else if (e.v1 == e.v2) {
+    return SAME_VERTEX ;
   } else {
     set.array[*(set.used_size)] = e ;
     *(set.used_size) += 1 ;
