@@ -15,7 +15,7 @@ bool edge_eq(edge e1, edge e2) ;
 
 typedef struct s_edge_set {
   int max_size ;
-  int used_size ;
+  int* used_size ;
   edge* array ;
 } edge_set ;
 

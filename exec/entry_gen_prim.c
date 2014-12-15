@@ -38,7 +38,7 @@ int main () {
     add_edge(set, e) ;
   }
 
-  for (int i = set.used_size - 1 ; i < m ; i++) {
+  for (int i = *(set.used_size); i < m ; i++) {
     edge e ;
     e.v1 = rand() % n ;
     e.v2 = rand() % n ;

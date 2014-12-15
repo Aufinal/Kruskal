@@ -16,7 +16,7 @@ int main()
 {
   edge_set s ;
   int n, i=0 ;
-  ftest_error(scan_file("testfile.txt", &s, &n)) ; //on recupere les aretes du fichier et le nombre de sommets
+  ftest_error(scan_file("t", &s, &n)) ; //on recupere les aretes du fichier et le nombre de sommets
   
   uf u = uf_create(n) ;
   
