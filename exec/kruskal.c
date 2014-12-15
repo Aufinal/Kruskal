@@ -6,11 +6,6 @@
 #include "edges.h"
 #include "scan.h"
 
-
-bool f(int a, int b, edge_set s) {
-  return (s.array[a].weight <= s.array[b].weight) ;
-}
-
 int main()
 {
   char name[256] ;
@@ -27,8 +22,13 @@ int main()
   int* t_edges = calloc(s.max_size, sizeof(int)) ;
   for ( ; i < s.max_size ; i++) {
     t_edges[i] = i ;
-  } 
-  quicksort(f, s, t_edges, 0, s.max_size) ;
+  }
+  
+  bool f(int a, int b) {
+  return (s.array[a].weight <= s.array[b].weight) ;
+  }
+
+  quicksort(f, t_edges, 0, s.max_size) ;
   
   edge_set mst = edge_set_create(n-1) ;
   int total_weight = 0 ;
