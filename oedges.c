@@ -1,25 +1,23 @@
 #include <stdlib.h>
 #include "edges.h"
 
-bool edge_eq(edge e1, edge e2) {
-  bool same_order = (e1.v1 == e2.v1) && (e1.v2 == e2.v2) ;
-  bool rev_order = (e1.v2 == e2.v1) && (e1.v1 == e2.v2) ;
-  return (same_order || rev_order) ;
+bool oedge_eq(oedge e1, oedge e2) {
+  return (e1.v1 == e2.v1) && (e1.v2 == e2.v2) ;
 }
 
-edge_set edge_set_create(int max_size) {
-  edge_set s ;
+oedge_set oedge_set_create(int max_size) {
+  oedge_set s ;
   s.max_size = max_size ;
   s.used_size = calloc( 1, sizeof(int)) ;
   *(s.used_size) = 0 ;
-  s.array = calloc(max_size, sizeof(edge)) ;
+  s.array = calloc(max_size, sizeof(oedge)) ;
   return s ;
 }
 
-err_code add_edge(edge_set set, edge e) {
+err_code add_oedge(oedge_set set, oedge e) {
   if (set.max_size == *(set.used_size)) {
     return TOO_MANY_EDGES ;
-  } else if (edge_set_is_in(set, e)) {
+  } else if (oedge_set_is_in(set, e)) {
     return TWICE_EDGE ;
   } else if (e.v1 == e.v2) {
     return SAME_VERTEX ;
@@ -30,9 +28,9 @@ err_code add_edge(edge_set set, edge e) {
   }
 }
 
-bool edge_set_is_in(edge_set set, edge e) {
+bool oedge_set_is_in(oedge_set set, oedge e) {
   for(int i = 0 ; i < *(set.used_size) ; i++) {
-    if (edge_eq(e, set.array[i])) {
+    if (oedge_eq(e, set.array[i])) {
       return TRUE ;
     }
   }

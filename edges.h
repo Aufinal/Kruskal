@@ -10,7 +10,6 @@ typedef struct s_edge {
   int v2 ;
 } edge ;
 
-bool edge_weight_leq(edge e1, edge e2) ;
 bool edge_eq(edge e1, edge e2) ;
 
 typedef struct s_edge_set {
