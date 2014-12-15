@@ -34,6 +34,7 @@ int main () {
     e.v1 = i ;
     e.v2 = rand() % i ;
     e.weight = (rand() % WEIGHT_MAX) + 1 ;
+    printf("%d %d %d\n", e.v1, e.v2, e.weight) ; 
     add_edge(set, e) ;
   }
 
@@ -42,6 +43,7 @@ int main () {
     e.v1 = rand() % n ;
     e.v2 = rand() % n ;
     e.weight = (rand() % WEIGHT_MAX) + 1 ;
+    printf("%d %d %d\n", e.v1, e.v2, e.weight) ;
     add_edge(set, e) ;
   }
 
