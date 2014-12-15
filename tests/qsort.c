@@ -4,63 +4,49 @@
 #include "unionfind.h"
 #include "quicksort.h"
 #include "edges.h"
+#include "scan.h"
 
 // TODO : modifier f, etc... Faire un main quoi !
 
-bool f(int a, int b) {
-  return (a<=b) ;
+bool f(int a, int b, edge_set s) {
+  return (s.array[a].weight <= s.array[b].weight) ;
 }
 
 int main()
 {
-/*
-    int i=0,n=0,m=0 ;
+  edge_set s ;
+  int n, i=0 ;
+  ftest_error(scan_file("testfile.txt", &s, &n)) ; //on recupere les aretes du fichier et le nombre de sommets
+  
+  uf u = uf_create(n) ;
+  
+  int* t_edges = calloc(s.max_size, sizeof(int)) ;
+  for ( ; i < s.max_size ; i++) {
+    t_edges[i] = i ;
+  } //tableau pour la fonction de comparaison (comment l'utiliser ?)
 
-    scanf("%d", &n) ; //nombre de sommets
-    scanf("%d", &m) ; //nombre d'aretes
+  quicksort(f, s, t_edges, 0, s.max_size) ;
+  
+  edge_set mst = edge_set_create(n) ;
+  int total_weight = 0 ;
+  edge curr_edge ;
 
-    // Initialisation des 2 tableaux : la foret de Kruskal et la liste des arêtes
-    int pere[n] ,
-    int* aretes [m] ;
-    int a,b,c ; //Variables pour le scanf des aretes
-
-    for(i=0 ; i<m ; i++)
-     {
-        printf("\n") ;
-        scanf ("%d", &a) ;
-        scanf ("%d", &b) ;
-        scanf ("%d", &c) ;
-        aretes[i]=[a,b,c] ;
+  for (i=0 ; i < s.max_size ; i++) {
+    curr_edge = s.array[t_edges[i]] ;
+    if (uf_find(u, curr_edge.v1) != uf_find(u, curr_edge.v2)) {
+      ftest_error(add_edge(mst, curr_edge)) ;
+      total_weight += curr_edge.weight ;
+      uf_union(u, curr_edge.v1, curr_edge.v2) ;
     }
+  }
 
-    for(i=0 ; i<n ; i++)
-    {
-        makeset(i,pere) ;
-    }
-*/
+  printf("Minimal spanning tree :\n") ;
 
+  for (i=0 ; i<n ; i++) {
+    printf("%d %d %d\n", mst.array[i].v1, mst.array[i].v2, mst.array[i].weight) ;
+  }
+  
+  printf("Total weight : %d\n", total_weight) ;
 
-    srand (time(NULL)) ;
-    int n = 100000, i = 0 ;
-    // scanf("%d", &n) ;
-    int t[n];
-
-    for ( ; i<n ; i++)
-    {
-      t[i] = rand() ;
-    }
-
-    quicksort(*f, t, 0, n ) ;
-
-    int c = 1, j=0  ;
-
-    while (c && j < n-1)
-    {
-        c = t[j] <= t[j+1] ;
-        j++ ;
-    }
-
-    printf("%d\n", c) ;
-
-    return 0 ;
+  return 0 ;
 }

@@ -1,6 +1,6 @@
 #include "errors.h"
 
-void fprint_error(err_code e) {
+void ftest_error(err_code e) {
   switch (e) {
   case OK:
     return ;

@@ -14,6 +14,6 @@
 
 typedef int err_code ;
 
-void fprint_error(err_code e); 
+void ftest_error(err_code e); 
 
 #endif
