@@ -17,10 +17,11 @@ int main()
   double total_weight ;
 
   for (i=0 ; i<n-1 ; i++) {
-    printf("%d %d %d\n", mst.array[i].v1, mst.array[i].v2, mst.array[i].weight) ;
+    printf("%d %d %lf\n", mst.array[i].v1, mst.array[i].v2, mst.array[i].weight) ;
+    total_weight += mst.array[i].weight ;
   }
-  
-  printf("Total weight : %d\n", total_weight) ;
+
+  printf("Total weight : %lf\n", total_weight) ;
 
   return 0 ;
 }

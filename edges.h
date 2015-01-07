@@ -5,7 +5,7 @@
 #include "bool.h"
 
 typedef struct s_edge {
-  int weight ;
+  double weight ;
   int v1 ;
   int v2 ;
 } edge ;

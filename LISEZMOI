@@ -1,0 +1,16 @@
+# Compilation
+  Pour compiler le projet, taper `make` dans le repertoire racine.
+  Cela génère 3 fichiers : kruskal.bin, graph_gen.bin, ograph_gen.bin.
+
+# Execution
+  kruskal.bin est le fichier exectutable de l'algorithme de kruskal.
+  Il s'execute en tapant `./kruskal.bin` et demande a l'utilisateur le nom du fichier décrivant le graphe.
+
+# Génération de tests
+  Notre binome n'apparaissant pas dans la liste des projets, nous avons arbitrairement choisi d'écrire les programmes de gérération de graphes suivants :
+
+  graph_gen.bin est un programme de génération de graphes simples pondérés non orientés connexes.
+  Il s'execute en tapant `./graph_gen.bin` et demande a l'utilisateur un nombre de sommets, un nombre d'aretes et le nom du fichier à générer. (utilisable pour gérérer des entrées pour les algorithmes de prim, kruskal...)
+
+  ograph_gen.bin est un programme de génération de graphes simples pondérés orientés.
+  Il s'execute en tapant `./ograph_gen.bin` et demande a l'utilisateur un nombre de sommets, un nombre d'aretes et le nom du fichier à générer. (utilisable pour gérérer des entrées pour les algorithmes de dijkstra, johnson..)
