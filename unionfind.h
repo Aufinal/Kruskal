@@ -9,7 +9,7 @@ typedef struct s_uf {
 
 uf uf_create(int size) ;
 
-uf uf_free(uf u) ;
+void uf_free(uf u) ;
 
 void uf_union(uf u, int x, int y) ;
 

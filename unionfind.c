@@ -18,6 +18,11 @@ uf uf_create(int size) {
   return u ;
 }
 
+void uf_free(uf u) {
+  free(u.father) ;
+  free(u.rank) ;
+}
+
 int simple_find(uf u, int x) {
   if (x == u.father[x]) {
     return x ;

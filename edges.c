@@ -10,10 +10,15 @@ bool edge_eq(edge e1, edge e2) {
 edge_set edge_set_create(int max_size) {
   edge_set s ;
   s.max_size = max_size ;
-  s.used_size = calloc( 1, sizeof(int)) ;
+  s.used_size = malloc(sizeof(int)) ;
   *(s.used_size) = 0 ;
   s.array = calloc(max_size, sizeof(edge)) ;
   return s ;
+}
+
+void edge_set_free(edge_set s) {
+  free(s.array) ;
+  free(s.used_size) ;
 }
 
 err_code add_edge(edge_set set, edge e) {
