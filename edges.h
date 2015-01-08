@@ -19,7 +19,7 @@ typedef struct s_edge_set {
 } edge_set ;
 
 edge_set edge_set_create(int max_size) ;
-void edge_set_free(edge_set s) ;
+void free_edge_set(edge_set s) ;
 err_code add_edge(edge_set set, edge e) ;
 bool edge_set_is_in(edge_set set, edge e) ;
 
