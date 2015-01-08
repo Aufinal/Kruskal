@@ -25,7 +25,7 @@ all: $(OBJECTS) exec
 exec: $(BUILD_EXEC_DIR) $(EXEC)
 
 %.bin: $(OBJECTS) $(BUILD_EXEC_DIR)/%.o
-	$(CC) $(FLAGS) $(LINK_FLAGS) $^ $(OUTPUT) $@
+	$(CC) $(FLAGS) $^ $(LINK_FLAGS) $(OUTPUT) $@
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
